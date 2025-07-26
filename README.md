@@ -188,93 +188,6 @@ The pipeline creates 20+ features from raw customer data:
 - `fiber_high_charges`: Fiber optic + high monthly charges
 - `senior_short_tenure`: Senior citizen + short tenure
 
-## 💰 Cost Optimization
-
-### Training Costs
-- **Baseline training**: ~$0.50-1.00 per job
-- **Hyperparameter tuning**: ~$5.00-10.00 for 10 jobs
-- **Data processing**: ~$0.10-0.50 for Glue job
-
-### Inference Costs
-- **ml.m5.large endpoint**: ~$0.10 per hour
-- **Data capture**: S3 storage costs only
-- **No additional costs** for predictions
-
-### Cost Reduction Tips
-1. **Stop endpoints** when not needed
-2. **Use smaller instances** for development
-3. **Reduce tuning jobs** for faster iteration
-4. **Use spot instances** for training (advanced)
-
-## 🛠️ Development
-
-### Adding New Features
-
-1. **Update feature engineering script**:
-   ```python
-   # In scripts/feature_engineering.py
-   def create_new_feature(df):
-       df = df.withColumn("new_feature", F.col("existing_col") * 2)
-       return df
-   ```
-
-2. **Test locally** with sample data
-
-3. **Upload updated script** to S3
-
-4. **Re-run Glue job**
-
-### Changing Model Parameters
-
-1. **Update configuration**:
-   ```python
-   # In config/config.py
-   XGBOOST_DEFAULT_PARAMS = {
-       'max_depth': 8,  # Changed from 6
-       'eta': 0.05,     # Changed from 0.1
-       # ... other params
-   }
-   ```
-
-2. **Re-run training** notebook
-
-### Custom Training Script
-
-The training script (`scripts/train.py`) can be customized for:
-- **Different algorithms** (Random Forest, Neural Networks)
-- **Custom metrics** and evaluation
-- **Advanced preprocessing**
-- **Model explainability**
-
-## 🧪 Testing
-
-### Unit Tests
-```bash
-pytest tests/
-```
-
-### Integration Tests
-```bash
-python tests/test_pipeline.py
-```
-
-### Model Validation
-- Cross-validation on training data
-- Hold-out test set evaluation
-- A/B testing framework ready
-
-## 📈 Monitoring
-
-### Model Performance
-- **Data drift detection** (configurable)
-- **Performance metrics** tracking
-- **CloudWatch integration**
-
-### Endpoint Monitoring
-- **Request/response logging** (100% capture)
-- **Latency and error metrics**
-- **Auto-scaling triggers**
-
 ## 🔒 Security
 
 ### IAM Permissions
@@ -283,11 +196,6 @@ Required permissions for SageMaker execution role:
 - SageMaker: Full access to training and endpoints
 - Glue: Access to run ETL jobs
 - CloudWatch: Logging and metrics
-
-### Data Privacy
-- **Data encryption** at rest and in transit
-- **VPC deployment** available
-- **Access logging** enabled
 
 ## 🆘 Troubleshooting
 
@@ -316,24 +224,8 @@ Required permissions for SageMaker execution role:
 3. **Verify S3 permissions** and bucket access
 4. **Test with sample data** first
 
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests
-5. Submit a pull request
-
 ## 📄 License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-## 🙏 Acknowledgments
-
-- AWS SageMaker team for excellent ML platform
-- XGBoost community for the robust algorithm
-- Open source contributors
-
 ---
-
-**🎉 Ready to predict churn? Get started with the [setup guide](docs/setup_guide.md)!** 
