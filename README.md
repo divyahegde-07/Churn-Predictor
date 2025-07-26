@@ -52,7 +52,6 @@ churn-predictor/
 ### Prerequisites
 
 1. **AWS Account** with appropriate permissions
-2. **AWS CLI** configured
 3. **Python 3.8+** installed
 4. **SageMaker Execution Role** created
 
